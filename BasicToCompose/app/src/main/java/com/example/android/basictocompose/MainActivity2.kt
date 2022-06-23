@@ -1,4 +1,4 @@
-package com.example.android.daijincompose
+package com.example.android.basictocompose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,18 +14,18 @@ import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.android.daijincompose.ui.theme.DaijinComposeTheme
+import com.example.android.basictocompose.ui.theme.DaijinComposeTheme
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            DaijinComposeTheme {
-                MyApp()
-            }
-        }
-    }
-}
+//class MainActivity2 : ComponentActivity() {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContent {
+//            DaijinComposeTheme {
+//                MyApp()
+//            }
+//        }
+//    }
+//}
 
 @Preview(showBackground = true, widthDp = 320)
 @Composable
