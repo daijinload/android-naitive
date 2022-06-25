@@ -40,7 +40,8 @@ class MyComposeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return ComposeView(requireContext()).apply {
-            // Dispose of the Composition when the view's LifecycleOwner is destroyed
+            // 画面のライフサイクルを下記で決める（細かい破棄条件を指定できる）
+            // 下記は、ビューのLifecycleOwnerが破棄されたときに、Compositionを破棄します。
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 DaijinComposeTheme {
@@ -72,7 +73,7 @@ fun MyApp(onNavigate: (Int) -> Unit) {
                     MainScreen {
                         // こちらの遷移方法は全てがComposeの場合の推奨の書き方だが、
                         // Fragment管理下ではないので、戻るボタンでスキップされてしまう。
-                        // 試しにsecond画面まで行って、戻るボタンで戻ってみると良い。
+                        // 4ページ目で戻るボタンを押すと、３ページがスキップされるから注意。
                         navController.navigate("4page")
                     }
                 }
