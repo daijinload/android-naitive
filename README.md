@@ -1,2 +1,2 @@
 # android-naitive
-Android開発のテスト用サンプルリポジトリ
+Android開発で既存のUIビューから、Composeに移行する際の書き方のサンプルリポジトリ
