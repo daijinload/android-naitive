@@ -23,7 +23,17 @@
         tools:layout="@layout/fragment_second">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_SecondFragment_to_MyComposeFragment"
+            app:destination="@id/MyComposeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/MyComposeFragment"
+        android:name="com.example.android.basictocompose.MyComposeFragment"
+        android:label="My Compose Fragment">
+
+        <action
+            android:id="@+id/action_MyComposeFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 
