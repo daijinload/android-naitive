@@ -22,11 +22,15 @@ import com.example.android.basictocompose.ui.theme.DaijinComposeTheme
 
 /**
  * ComposeをFragmentとして扱うサンプル
- * このComposeではページ遷移をしているが、戻るボタンはFragment単位で動くので、
- * SecondページからFirstページには行かず、Fragment側の画面に移動する。
+ *
+ * このサンプルでは、Compose Navigationによる遷移（3page to 4page）と、
+ * nav_graph.xmlによる遷移(4page to 1page)を行っています。
+ *
+ * ４ページ目で戻るボタンを押下した場合、３ページには行かず、2ページに移動してしまいます。
+ * （戻るボタンがFragment単位で遷移させるため。）
  *
  * この現象から、移行が完全に終わるまでは、１つのFragmentに
- * １つのComposeとして遷移はFragmentで指定する必要がありそう。
+ * １つのComposeとして遷移はnav_graph.xmlで指定していく方針とする。
  */
 class MyComposeFragment : Fragment() {
 
@@ -41,7 +45,8 @@ class MyComposeFragment : Fragment() {
             setContent {
                 DaijinComposeTheme {
                     // In Compose world
-                    //Text("Hello Compose!")
+                    // findNavControllerを直接下に渡さずに、ラムダ式で渡すことにより、
+                    // プレビューやテストがしやすくなる（findNavControllerを作るのは大変そう。。。）
                     MyApp{dest -> findNavController().navigate(dest)}
                 }
             }
@@ -62,8 +67,8 @@ fun MyApp(onNavigate: (Int) -> Unit) {
     DaijinComposeTheme {
         val navController = rememberNavController()
         Scaffold() {
-            NavHost(navController = navController, startDestination = "main") {
-                composable("main") {
+            NavHost(navController = navController, startDestination = "3page") {
+                composable("3page") {
                     MainScreen {
                         // こちらの遷移方法は全てがComposeの場合の推奨の書き方だが、
                         // Fragment管理下ではないので、戻るボタンでスキップされてしまう。
@@ -71,7 +76,7 @@ fun MyApp(onNavigate: (Int) -> Unit) {
                         navController.navigate("second")
                     }
                 }
-                composable("second") {
+                composable("4page") {
                     SecondScreen{
                         // こちらの遷移方法だと、Fragment管理下なので、ちゃんと移動できる。
                         onNavigate(R.id.action_SecondFragment_to_FirstFragment)
@@ -83,21 +88,21 @@ fun MyApp(onNavigate: (Int) -> Unit) {
 }
 
 @Composable
-fun MainScreen(toSecond: () -> Unit) {
+fun MainScreen(onClick: () -> Unit) {
     Column() {
-        Text("Compose 1st Screen!!")
-        Button(onClick = toSecond) {
+        Text("3page Compose Screen!!")
+        Button(onClick = onClick) {
             Text("Next")
         }
     }
 }
 
 @Composable
-fun SecondScreen(toFirstFragment: () -> Unit) {
+fun SecondScreen(onClick: () -> Unit) {
     Column() {
-        Text("Compose 2nd Screen!!")
-        Button(onClick = toFirstFragment) {
-            Text("Next")
+        Text("4page Compose Screen!!")
+        Button(onClick = onClick) {
+            Text("Go To First!!")
         }
     }
 }
