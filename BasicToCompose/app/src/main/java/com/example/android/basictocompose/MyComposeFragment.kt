@@ -73,13 +73,13 @@ fun MyApp(onNavigate: (Int) -> Unit) {
                         // こちらの遷移方法は全てがComposeの場合の推奨の書き方だが、
                         // Fragment管理下ではないので、戻るボタンでスキップされてしまう。
                         // 試しにsecond画面まで行って、戻るボタンで戻ってみると良い。
-                        navController.navigate("second")
+                        navController.navigate("4page")
                     }
                 }
                 composable("4page") {
                     SecondScreen{
                         // こちらの遷移方法だと、Fragment管理下なので、ちゃんと移動できる。
-                        onNavigate(R.id.action_SecondFragment_to_FirstFragment)
+                        onNavigate(R.id.action_MyComposeFragment_to_FirstFragment)
                     }
                 }
             }
