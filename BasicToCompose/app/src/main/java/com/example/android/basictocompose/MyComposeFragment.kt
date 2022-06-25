@@ -21,7 +21,7 @@ import com.example.android.basictocompose.ui.theme.DaijinComposeTheme
 
 
 /**
- * ComposeをFragmentとして扱うサンプル
+ * FragmentをComposeで作成するサンプル
  *
  * このサンプルでは、Compose Navigationによる遷移（3page to 4page）と、
  * nav_graph.xmlによる遷移(4page to 1page)を行っています。
@@ -30,7 +30,7 @@ import com.example.android.basictocompose.ui.theme.DaijinComposeTheme
  * （戻るボタンがFragment単位で遷移させるため。）
  *
  * この現象から、移行が完全に終わるまでは、１つのFragmentに
- * １つのComposeとして遷移はnav_graph.xmlで指定していく方針とする。
+ * １つのComposeとして遷移はnav_graph.xmlで指定していく方針が良さそう。
  */
 class MyComposeFragment : Fragment() {
 
