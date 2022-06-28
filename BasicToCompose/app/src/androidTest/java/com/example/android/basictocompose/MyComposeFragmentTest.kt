@@ -38,8 +38,8 @@ class MyComposeFragmentTest {
 private fun saveScreenshot(filename: String, bmp: Bitmap) {
     val path = Environment.getExternalStorageDirectory().path
     val myPngPath = "$path/Download/dog-best-friend-1.png"
-//    val path = InstrumentationRegistry.getInstrumentation().targetContext.filesDir.canonicalPath
-    Log.d("TestScreenShot", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: $path/$filename.png");
+    val canonicalPath = InstrumentationRegistry.getInstrumentation().targetContext.filesDir.canonicalPath
+    Log.d("TestScreenShot", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: $canonicalPath/$filename.png");
     Log.d("TestScreenShot", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa2: $myPngPath");
 //    FileOutputStream("$path/$filename.png").use { out ->
     FileOutputStream(myPngPath).use { out ->
